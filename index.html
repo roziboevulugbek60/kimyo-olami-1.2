@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071b24">
+  <title>CHEM SORT | Kimyo laboratoriyasi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="brand-icon">⚗️</span>
+      <span>CHEM<span class="brand-accent">SORT</span></span>
+    </a>
+
+    <div class="top-stats">
+      <div class="stat">
+        <span>🏆</span>
+        <div><small>Ball</small><strong id="score">0</strong></div>
+      </div>
+      <div class="stat">
+        <span>⭐</span>
+        <div><small>Rekord</small><strong id="record">0</strong></div>
+      </div>
+      <div class="stat">
+        <span>⏱️</span>
+        <div><small>Vaqt</small><strong id="timer">60</strong></div>
+      </div>
+    </div>
+
+    <button class="icon-btn" id="soundBtn" title="Ovoz">
+      🔊
+    </button>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <div class="intro-label"><span class="pulse"></span> VIRTUAL KIMYO LABORATORIYASI</div>
+      <h1>CHEM <span>SORT</span></h1>
+      <p>Moddalarni to‘g‘ri toifalarga ajrat va kimyo bilimlaringni sinab ko‘r!</p>
+    </section>
+
+    <section class="dashboard">
+      <div class="dashboard-card">
+        <span class="dashboard-icon">📚</span>
+        <div><small>Savol</small><strong><span id="questionNumber">1</span>/20</strong></div>
+      </div>
+      <div class="dashboard-card">
+        <span class="dashboard-icon">🎯</span>
+        <div><small>To‘g‘ri javob</small><strong id="correctCount">0</strong></div>
+      </div>
+      <div class="dashboard-card">
+        <span class="dashboard-icon">🚀</span>
+        <div><small>Bosqich</small><strong id="level">1</strong></div>
+      </div>
+      <div class="dashboard-card">
+        <span class="dashboard-icon">⚡</span>
+        <div><small>Qiyinlik</small><strong id="difficulty">Aralash</strong></div>
+      </div>
+    </section>
+
+    <div class="progress-area">
+      <div class="progress-info">
+        <span>O‘yin jarayoni</span>
+        <span id="progressText">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <section class="game-layout">
+      <div class="lab-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">MODDANI ANIQLA</span>
+            <h2>Bu qanday modda?</h2>
+          </div>
+          <span class="question-badge" id="questionBadge">01</span>
+        </div>
+
+        <div class="molecule-scene">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="orbit orbit-three"></div>
+          <div class="molecule" id="moleculeVisual">
+            <span class="atom atom-main">?</span>
+            <span class="atom atom-small atom-a"></span>
+            <span class="atom atom-small atom-b"></span>
+            <span class="atom atom-small atom-c"></span>
+          </div>
+          <div class="scene-platform"></div>
+          <div class="scene-light"></div>
+        </div>
+
+        <div class="substance-card">
+          <span class="substance-label">MODDA NOMI</span>
+          <h3 id="substanceName">Tuzli suv</h3>
+          <p id="substanceFormula">NaCl + H₂O</p>
+        </div>
+
+        <p class="instruction">Quyidagi toifalardan birini tanla yoki moddani mos qutiga sudrab olib bor.</p>
+
+        <div class="hint-box" id="hintBox" hidden>
+          <span>💡</span>
+          <p id="hintText"></p>
+        </div>
+
+        <div class="action-row">
+          <button class="secondary-btn" id="hintBtn">💡 Maslahat</button>
+          <button class="secondary-btn" id="skipBtn">⏭️ O‘tkazish</button>
+        </div>
+
+        <div class="feedback" id="feedback" aria-live="polite">
+          Javobni tanlang!
+        </div>
+      </div>
+
+      <div class="categories-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="eyebrow">SARALASH ZONASI</span>
+            <h2>Toifani tanla</h2>
+          </div>
+          <span class="category-count">3 TOIFA</span>
+        </div>
+
+        <div class="category-list">
+          <button class="category-card solution" data-category="solution">
+            <span class="category-visual">💧</span>
+            <span class="category-info">
+              <strong>Eritma</strong>
+              <small>Bir xil ko‘rinishli aralashma</small>
+            </span>
+            <span class="category-arrow">➜</span>
+          </button>
+
+          <button class="category-card pure" data-category="pure">
+            <span class="category-visual">💎</span>
+            <span class="category-info">
+              <strong>Sof modda</strong>
+              <small>Bitta kimyoviy element</small>
+            </span>
+            <span class="category-arrow">➜</span>
+          </button>
+
+          <button class="category-card compound" data-category="compound">
+            <span class="category-visual">⚗️</span>
+            <span class="category-info">
+              <strong>Murakkab modda</strong>
+              <small>Ikki yoki undan ortiq element</small>
+            </span>
+            <span class="category-arrow">➜</span>
+          </button>
+        </div>
+
+        <div class="lab-tip">
+          <span>🧪</span>
+          <div>
+            <strong>Kimyogar eslatmasi</strong>
+            <p>Sof modda va murakkab modda ikkalasi ham sof moddalardir. Bu o‘yinda “Sof modda” deganda oddiy modda — element nazarda tutiladi.</p>
+          </div>
+        </div>
+
+        <div class="mini-stats">
+          <div><span>🔥 Ketma-ket</span><strong id="streak">0</strong></div>
+          <div><span>📊 Aniqlik</span><strong id="accuracy">0%</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom-bar">
+      <span>© CHEM SORT</span>
+      <span>Bilim — eng kuchli element! 🧬</span>
+      <button id="restartBtn">↻ Qayta boshlash</button>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="startModal">
+    <div class="modal">
+      <div class="modal-icon">🧪</div>
+      <span class="eyebrow">VIRTUAL LABORATORIYA</span>
+      <h2>CHEM <span>SORT</span></h2>
+      <p>Kimyoviy moddalarni to‘g‘ri ajratishga tayyormisan?</p>
+      <div class="rules">
+        <div>💧 <span>Eritmalarni aniqlash</span></div>
+        <div>💎 <span>Oddiy moddalarni topish</span></div>
+        <div>⚗️ <span>Murakkab moddalarni ajratish</span></div>
+        <div>🏆 <span>20 ta savolda rekord o‘rnatish</span></div>
+      </div>
+      <button class="primary-btn" id="startBtn">O‘YINNI BOSHLASH →</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="resultModal" hidden>
+    <div class="modal result-modal">
+      <div class="modal-icon" id="resultIcon">🏆</div>
+      <span class="eyebrow">LABORATORIYA NATIJASI</span>
+      <h2 id="resultTitle">Ajoyib natija!</h2>
+      <p id="resultMessage">Sen barcha savollarni yakunlading.</p>
+      <div class="result-grid">
+        <div><small>Jami ball</small><strong id="finalScore">0</strong></div>
+        <div><small>To‘g‘ri javob</small><strong id="finalCorrect">0/20</strong></div>
+        <div><small>Aniqlik</small><strong id="finalAccuracy">0%</strong></div>
+      </div>
+      <button class="primary-btn" id="playAgainBtn">YANA O‘YNASH ↻</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
